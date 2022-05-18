@@ -92,6 +92,35 @@ if (!function_exists('make_breadcrumb')) {
         return $res;
     }
 }
+
+if(!function_exists('current_page')){
+    function current_page(){
+        return explode('.', uri())[0];
+    }
+}
+
+if(!function_exists('add_attribute')){
+    function add_attribute($arr, $attr){
+        $new_array = array_map(function ($element) use ($attr){
+            $element[$attr['key']] = $attr['value'];
+            return $element;
+        },$arr);
+        return $new_array;
+    }
+}
+
+
+if(!function_exists('remove_attribute')){
+    function remove_attribute($arr, $attr){
+        $new_array = array_map(function ($element) use ($attr){
+            unset($element[$attr]);
+            return $element;
+        },$arr);
+        return $new_array;
+    }
+}
+
+
 if(!function_exists('snakeCase')){
     function snakeCase($str){
         return Str::snake($str);

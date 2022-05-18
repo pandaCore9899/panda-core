@@ -216,6 +216,12 @@ $shape-sizes: (
 .panda-center{
     @include flex(center, center);
 }
+.panda-end{
+    @include flex(center, flex-end);
+}
+.panda-start{
+    @include flex(center, flex-start);
+}
 @each $gap in $flex-gaps {
     .padding-#{$gap}{
         padding: #{$gap+'px'} !important;

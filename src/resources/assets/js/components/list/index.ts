@@ -1,4 +1,4 @@
-import { sendAjaxRequest } from "../../utils";
+import { pandaAjax, pandaReload, sendAjaxRequest } from "../../utils";
 import Swal from 'sweetalert2';
 import toast from "../toast";
 
@@ -11,11 +11,22 @@ function checkAll(element: HTMLInputElement) {
     }
 }
 
+function importItems(path: string) {
+    console.log(path,);
+    pandaAjax(path, null).then(res => {
+        console.log(res.status)
+        if (res.status == 200) {
+            toast.init('Import Successfully', 'success');
+            pandaReload(3, true);
+
+        }
+    })
+}
 function deleteItems() {
     let ids: string[] = [];
     let checkedAll = $('input[name="item_check_all"]:checked')[0];
     let path = window.location.href.split('?')[0]
-   
+
     if (checkedAll) {
         Swal.fire({
             title: 'Are you sure?',
@@ -39,9 +50,9 @@ function deleteItems() {
                 }).then((res: any) => {
                     console.log(res)
                     if (res.status == 200) {
-                        
-                        toast.init('Delete Successfully','success');
-                       
+
+                        toast.init('Delete Successfully', 'success');
+                        pandaReload(2);
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -88,9 +99,10 @@ function deleteItems() {
                     }).then((res: any) => {
                         console.log(res)
                         if (res.status == 200) {
-                            toast.init('Delete Successfully!','success',true)
+                            toast.init('Delete Successfully!', 'success', true)
+                            pandaReload(2);
                         } else {
-                            toast.init('Cannot delete items!','error',false)
+                            toast.init('Cannot delete items!', 'error', false)
                         }
                     }).catch((e) => {
                         console.log(e);
@@ -98,28 +110,25 @@ function deleteItems() {
                 }
             })
         } else {
-            toast.init('Please choice the records which you want to delete!','error',false)
+            toast.init('Please choice the records which you want to delete!', 'error', false)
         }
 
     }
 }
 
 function setLimit(limit: string) {
-    console.log( window.location.href)
+    console.log(window.location.href)
     if ('URLSearchParams' in window) {
         var searchParams = new URLSearchParams(window.location.search)
         searchParams.set('limit', limit);
         var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
         location.href = newRelativePathQuery;
     }
-    // console.log(limit);
-    // const urlParams = new URLSearchParams(window.location.search);
-    // urlParams.set('limit', limit);
-    // (<any>window).location.search = urlParams;
 
 }
 export default {
     checkAll,
     deleteItems,
-    setLimit
+    setLimit,
+    importItems
 }

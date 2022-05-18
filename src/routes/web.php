@@ -23,7 +23,7 @@ Route::post('/account.delete','User\UserController@delete')->name('account_manag
 Route::get('/account.import', 'User\UserController@importIndex')->name('account_management.import.index');
 Route::post('/account.import', 'User\UserController@import')->name('account_management.import.save');
 Route::post('/account.import.confirm', 'User\UserController@confirmIndex')->name('account_management.confirm.confirm');
-Route::get('/account.import.confirm', 'User\UserController@confirmResult')->name('account_management.confirm.result');
+Route::get('/account.import.result', 'User\UserController@confirmResult')->name('account_management.confirm.result');
 Route::get('/admin',function(){
     return view(viewIndex('pages.users'));
 })->name('admin_management');

@@ -63,5 +63,32 @@ export function sendAjaxRequest(_type: string, _url: string, _params: string, _c
     });
 
 }
+export function pandaAjax(path: string, data: any = null) {
+    return $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        url: path,
+        data: {
+            'data': data
+        },
+    })
+}
+export function pandaReload(time: number = 0, isParent:boolean= false) {
+    var delayInMilliseconds = time * 1000; //1 second
+
+    setTimeout(function () {
+        if(isParent) {
+            parent.location.reload()
+        }else{
+            location.reload();
+        }
+    }, delayInMilliseconds);
+}
+export function pandaRedirect(url:string){
+    window.location.href = url
+
+}
 
 

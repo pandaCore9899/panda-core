@@ -8,7 +8,7 @@ import commonDropdown from './components/common/dropdown';
 import accordion from './components/accordion/accordion';
 import list from './components/list';
 import modal from './components/modal';
-import { importAll } from './utils';
+import { importAll,pandaRedirect } from './utils';
 import toast from './components/toast'
 (<any>window).PANDA = {
     commonDropdown,
@@ -20,7 +20,8 @@ import toast from './components/toast'
     accordion,
     list,
     modal,
-    toast
+    toast,
+    pandaRedirect
 };
 window.onload = () =>{
     commonDropdown.outside();

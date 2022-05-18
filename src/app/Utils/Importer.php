@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 
 use App\Utils\ExcelManager;
+use Illuminate\Support\Facades\Validator;
 
 trait Importer
 {
@@ -34,14 +35,43 @@ trait Importer
         }
     }
 
+    public function importRules()
+    {
+
+        return [
+            'email' => 'required|unique:users,email,NULL,id,deleted_at,NULL'
+        ];
+    }
+    public function validateImportData(&$data, $messages = null, &$avaiableItems)
+    {
+        $rules = $this->importRules();
+        $isValidated = true;
+        $validRows = [];
+        $this->msgs = new MessageManager();
+        foreach ($data as $d) {
+            $validator = Validator::make($d, $rules);
+            if ($validator->fails()) {
+                foreach ($validator->getMessageBag()->getMessages() as $name => $message) {
+                    $this->msgs->addErrorMsg(trans('common.function.import.row').' ' . $d['row'] . ' :' . $this->model::translateWithFormat($message[0], $name));
+                }
+                $isValidated = false;
+            } else {
+                array_push($validRows, $d['row']);
+            }
+        }
+        $data = collect($data)->map(function($element) use ($validRows){
+            $element['valid'] = in_array($element['row'], $validRows);
+            return $element;
+        })->toArray();
+        return $isValidated;
+    }
     public function confirmFormInput(Request $req)
     {
-        // confirm form input
+
         $file = $req->file('import_file');
         $import_type = $req->get('import_type');
 
         if ($import_type == null) {
-
             $this->msgs->addErrorMsg(trans('alert/common.empty', [
                 'field' => trans('common.function.import.import_type')
             ]));
@@ -59,7 +89,6 @@ trait Importer
     }
     public function confirmIndex(Request $req)
     {
-        // dump("confirm");
         $this->msgs = new MessageManager();
         $confirmFormInput = $this->confirmFormInput($req);
         if ($confirmFormInput) {
@@ -70,20 +99,29 @@ trait Importer
                 $el['row'] = $count + 2;
                 return $el;
             }, $data);
+
             session()->forget('data');
             session()->push('data', $data);
-            return redirect()->route('account_management.confirm.result');
-            // return $view_builder();
+            return redirect(current_page() . '.import.result')->withInput(request()->all());
         } else {
-            return redirect()->back()->with('import', $this->msgs->all()->toArray());
+
+            return redirect()->back()->with(['import_error' => $this->msgs->all()->toArray()]);
         }
     }
     public function confirmResult(Request $req)
     {
         $view_builder = new ViewBuilder();
         $data = session('data')[0];
+        if ($this->validateImportData($data, null, $avaiableItems) == false) {
+            $view_builder
+                ->setVar('isError', true)
+                ->setVar('errors',  $this->msgs->all()->toArray());
+        } else {
+            $view_builder->setVar('all_data', session('data')[0]);
+        }
         $data = $this->applyPaginationByData(collect($data), $req);
-
+        $avaiableItems = [];
+       
         $view_builder
             ->setView('pages.static.import.confirm')
             ->setData($data)
@@ -91,6 +129,28 @@ trait Importer
             ->setLimitOptions($this->limit_options)
             ->setColumns($this->importColumns($req));
         return $view_builder();
+    }
+
+
+    public function import(Request $req)
+    {
+        $data = session('data')[0];
+
+        $data = remove_attribute($data, 'row');
+        try {
+            foreach ($data as $d) {
+                $this->model::create($d);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 401,
+                'message' => $e->getMessage()
+            ]);
+        }
+        session()->forget('data');
+        return response()->json([
+            'status' => 200,
+        ]);
     }
 
     public function customImportLogic(Request $req)

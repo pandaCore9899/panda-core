@@ -15,7 +15,8 @@ class User extends PandaModel
         'name',
         'email',
         'role',
-        // 'deleted_at'
+        'password',
+        'deleted_at'
     ];
     protected $visible = [
         'deleted_at'
