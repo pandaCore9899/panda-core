@@ -1,0 +1,25 @@
+ul.panda-breadcrumb {
+    // padding: unset !important;
+    padding: 1px 2px;
+    list-style: none;
+    background-color: #eee;
+    li {
+        display: inline;
+        // font-size: 14px;
+    }
+    
+    li + li:before {
+        // padding: 8px;
+        color: black;
+        content: "/\00a0";
+    }
+    li a {
+        color: #0275d8 !important;
+        text-decoration: none;
+    }
+    li a:hover {
+        color: #01447e !important;
+        text-decoration: underline;
+    }
+}
+

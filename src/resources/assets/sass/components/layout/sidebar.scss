@@ -1,0 +1,92 @@
+
+.panda-sidebar {
+    &__wrapper{
+        margin-top: 10px;
+        // @include flex(center,left);
+        width: $sidebar-width;
+    }
+    &__toggle{
+        @include flex(center,left);
+        padding: 10px 10px;
+        &:hover{
+            cursor: pointer;
+            background: $lightning-hover-bg-color;
+            transition: all 0.5s;
+        }
+        &__content{
+            padding-left: 10px;
+            width: 200px;
+        }
+    }
+
+    @include mobile{
+        display: none!important;
+    }
+    &-toggle{
+        transform: translateX(-100%);
+        transition: ease-in 0.5s;
+    }
+    &-hide {
+        transform: translateX(-100%);
+        transition: ease-in 0.5s;
+    }
+    &-show {
+        transform: translateX(0);
+        transition: ease-in 0.5s;
+    }
+    height: 100%;
+    width: $sidebar-width;
+    position: fixed;
+    z-index: 1;
+    top: 60px;
+    left: 0;
+    background-color: $lightning-sidebar-bg-color;
+    display: block;
+    font-style: bold;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.panda-sidebar {
+    &__items {
+        @include flex(center, left);
+        padding: 10px 0px 0px 10px;
+        text-decoration: none;
+        font-size: 12px;
+        color: $lightning-text-color;
+        height: 50px;
+        border-top: 1px solid $lightning-border-color;
+    }
+    &__items:hover {
+        cursor: pointer;
+        background: $lightning-hover-bg-color;
+        transition: all 0.5s;
+    }
+    &__sub-items {
+        &-show {
+            display: block;
+            animation: showDropDown 0.5s all;
+        }
+        &__item {
+            @include flex(center,left);
+            font-weight: 400;
+            height: 45px;
+            padding: 6px 8px 6px 45px;
+            &:hover {
+                cursor: pointer;
+                background: $lightning-hover-bg-color;
+            }
+        }
+        text-decoration: none;
+        font-size: 11px;
+        background: rgb(250, 244, 244);
+        color: $lightning-text-color;
+    }
+}
+@keyframes showDropDown {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,42 @@
+$icon-types:(
+    'cycle':50%,
+    'square':0
+);
+$icon-size: 20;
+$counts :100;
+@while $icon-size < 60 {
+    @each $type, $val in $icon-types {
+        .panda-icon-#{$type}-#{$icon-size}{
+            border-radius: #{$val};
+            width: #{$icon-size}px;
+            height: #{$icon-size}px;
+            font-size:  #{$icon-size}px;
+            background-color: whitesmoke;
+            @include flex(center,center);
+            position: relative;
+            &:hover{
+                background: $lightning-hover-bg-color;
+                cursor: pointer;
+            }
+        }
+        .panda-icon-count-#{$icon-size}{
+            display: block;
+            position: absolute;
+            top: -3px;
+            right: -5px;
+            width:18px !important;
+            height: 18px;
+            font-size:12px;
+            background: linear-gradient(90deg, rgba(238,29,2,1) 100%, rgba(201,203,212,1) 100%);
+            color: white;
+            width: fit-content;
+            border-radius: 50%;
+            @include flex(center,center);
+        }
+    }
+  $icon-size: $icon-size + 1;
+}
+.panda-icon-count-100{
+    width: 20px!important;
+    font-size: 11px!important;
+}

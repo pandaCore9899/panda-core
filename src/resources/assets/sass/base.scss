@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+.panda-hide {
+    display: none !important;
+}
+.panda-show {
+    display: block !important;
+}
+html {
+    font-size: 13px;
+    @include mobile {
+        font-size: 11px;
+    }
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none !important;
+    color: unset !important;
+}
+
+a:hover {
+    color: steelblue;
+}
+
+img {
+    max-width: 100%;
+}
+button:focus {
+    outline: none;
+}
+@each $color, $val in $colors {
+    .color-#{$color} {
+        color: $val;
+    }
+    @each $color1, $val1 in $colors {
+        .bg-#{$color}-c-#{$color1} {
+            background-color: $val;
+            color: $val1;
+        }
+        .hover-#{$color}-#{$color1} {
+            &:hover {
+                background-color: $val;
+                color: $val1;
+            }
+        }
+    }
+    .hover-red {
+        &:hover {
+            background-color: red;
+        }
+    }
+    .bg-#{$color} {
+        background-color: $val;
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-#{$val} {
+        grid-template-columns: repeat($val, 1fr);
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-md-#{$val} {
+        @include tablet {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-sm-#{$val} {
+        @include mobile {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1620px;
+    padding: 0 10px;
+    margin: auto;
+    @include tablet {
+        padding: 0 20px;
+    }
+    @include mobile {
+        padding: 0 10px;
+    }
+}
+
+.main {
+    // margin-top: calc(#{$header-height}/4);
+    margin-bottom: 2rem;
+    min-height: 100vh;
+    @include tablet {
+        margin-top: calc(#{$header-tablet-height}+20px);
+    }
+    @include mobile {
+        margin-top: calc(#{$header-mobile-height}+10px);
+    }
+}
+
+.grid {
+    display: grid;
+}
+//icons
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+    font-size: 18px;
+}
+.material-icons.md-24 {
+    font-size: 24px;
+}
+.material-icons.md-36 {
+    font-size: 36px;
+}
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+@each $role,$color in $role-bg-colors {
+    .lightning-main-color-#{$role}{
+        background: $color !important;
+    }
+}
+@each $mode in $modes {
+    @each $type in $box-shadow-types {
+        .#{$mode}-box-shadow-#{$type}{
+            
+            @include initBoxShadow($mode,$type);
+        }
+        
+    }
+}
+/**shapes **/
+$shape-sizes: (
+    "5" : 5px,
+    "10": 10px,
+    "20": 20px,
+    "25": 25px,
+);
+@each $key,$size in $shape-sizes {
+    @each $color,$color_val in $colors {
+        .triangle-up-#{$key}-#{$color}{
+            width: 0 !important;
+            height: 0 !important;
+            border-left: $size solid transparent;
+            border-right: $size solid transparent;
+            border-bottom: #{$size/4*3} solid $color_val;
+        }
+        .cycle-#{$key}-#{$color}{
+            display: block;
+            width: $size;
+            height: $size;
+            border-radius: 50%;
+            background-color: $color_val;
+        }
+    }
+    
+}
+.panda-selected{
+    background-color: rgb(218, 212, 212) !important;
+}
+.panda-row{
+    width: 100%;
+    padding: 10px 0px;
+}
+.is-flex{
+    display: flex !important;
+}
+@each $gap in $flex-gaps {
+    .gap-#{$gap}{
+        gap: #{$gap+'px'}
+    }
+}
+@each $width in $custom_width {
+    .width-#{$width}{
+        width: #{$width+'% !important'}
+    }
+    .height-#{$width}{
+        height: #{$width+'% !important'}
+    }
+}
+.panda-center{
+    @include flex(center, center);
+}
+@each $gap in $flex-gaps {
+    .padding-#{$gap}{
+        padding: #{$gap+'px'} !important;
+    }
+}

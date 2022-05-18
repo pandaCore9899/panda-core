@@ -1,0 +1,38 @@
+$dropdown-types : 'sidebar','list';
+@each $type in $dropdown-types {
+    .panda-dropdown-#{$type}-icon{
+        @include flex(center,right);
+        color: $lightning-text-color;
+        align-items: center;
+        width: 30px;
+        height:30px;
+    }
+    .panda-dropdown-#{$type}-content{
+        &__icon{
+            @include flex(center,center);
+            width: 30px;
+            height: 30px;
+        }
+        @include flex(center,left);
+        width: 180px;
+        height: 100%;
+        padding: 6px 0px 6px 8px;
+    }
+}
+/*dropdown*/
+.panda-dropdown-selected{
+    background: $lightning-selected-bg-color;
+    color: white;
+}
+.panda-dropdown{
+    &__wrapper{
+        position: relative;
+    }
+    &__toggle{
+        display: block;
+    }
+    &__container{
+        display: block;
+        display: none;
+    }
+}

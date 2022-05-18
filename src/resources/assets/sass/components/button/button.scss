@@ -1,0 +1,34 @@
+$degs: 90,-90,180,-180,360,-360;
+.panda-dropdown-button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.panda-toogle-sidebar-button{
+    &-selected{
+        background-color: $lightning-selected-bg-color;
+    }
+    z-index: 90;
+    padding: 1rem;
+    width: 40px;
+    height: 40px;
+    @include flex(center,center);
+    margin-left: 1rem;
+    border: none;
+    border-radius: 50%;
+    &:hover{
+        cursor: pointer;
+        background-color: rgb(170, 162, 162);
+    }
+}
+@each $deg in $degs {
+    .panda-rotate-#{$deg}{
+        transform: rotate(#{$deg+'deg'});
+    }
+}
+.btn-small{
+    width: 0px;
+    height: 30px;
+}

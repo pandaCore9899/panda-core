@@ -1,0 +1,42 @@
+.panda-search {
+    width: 100%;
+    padding: 20px 10px;
+    margin-top: 10px;
+    &__extend{
+        padding-top:10px;
+    }
+}
+.query{
+    width: 70%;
+}
+// input{
+//     border: 1px solid steelblue;
+//     &:focus {
+//         // background-color: whitesmoke;
+//         border: 1px solid rgb(194, 145, 54);
+//         outline: none;
+//     }
+// }
+.panda-search input {
+    height: 35px;
+    
+    padding: 4px;
+    &:focus {
+        // background-color: whitesmoke;
+        border: 1px solid rgb(194, 145, 54);
+        outline: none;
+    }
+}
+select {
+    height: 35px;
+    border: 1px solid steelblue;
+    &:focus {
+        // background-color: whitesmoke;
+        border: 1px solid rgb(194, 145, 54);
+        outline: none;
+    }
+}
+.panda-search select {
+    height: 35px;
+    
+}

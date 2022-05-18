@@ -1,0 +1,21 @@
+@import "./input/input.scss";
+@import "./select/select.scss";
+
+.panda-form__label {
+    @include flex(center, left);
+    padding: 3px 3px 3px 0px;
+}
+
+.panda-query {
+    &__wrapper {
+        @include flex(center, left)
+    }
+
+    &__input {
+        min-width: 70%;
+    }
+
+    &__select {
+        min-width: 30px;
+    }
+}

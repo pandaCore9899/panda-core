@@ -1,0 +1,15 @@
+.panda-content{
+    &-hide{
+        padding-left: 40px;
+        transition: ease-in 0.5s;
+    }
+    &-show{
+        padding-left: 230px;
+        transition: ease-in 0.5s;
+    }
+    padding-left: 230px;
+    padding-top: 1rem;
+    padding-right: 20px;
+    margin-top: 70px;
+    position: relative;
+}

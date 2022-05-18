@@ -1,0 +1,64 @@
+$modes: "lightning", "dark";
+
+/**role color **/
+$role-bg-colors: (
+    "admin": linear-gradient(90deg, rgba(14, 45, 240, 1) 0%, rgba(243, 245, 233, 1) 100%),
+    "guest": linear-gradient(90deg, rgba(14, 45, 240, 1) 0%, rgba(243, 245, 233, 1) 100%),
+    "user": linear-gradient(90deg, rgba(240, 169, 14, 1) 0%, rgba(230, 241, 231, 1) 100%),
+);
+
+/** boders **/
+$box-shadow-types: "all", "right", "left", "bottom", "top";
+$main-bg: #fff;
+$main-color: #ed71a3;
+$txt-main-color: #000;
+$txt-second-color: #8d8d8d;
+$txt-white: #fff;
+$btn-main-bg: $main-color;
+$btn-main-color: #fff;
+$header-height: 200px;
+$header-tablet-height: 74px;
+$header-mobile-height: 74px;
+$header-shrink-height: 74px;
+$box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+$colors: (
+    "blue": #4267b2,
+    "orange": #fbb96b,
+    "pink": #fe7e73,
+    "white": #fff,
+    "yellow": yellow,
+    "black": #000,
+    "main": $main-color,
+    "red": #ff0000,
+    "crimson": #dc143c,
+    "whitesmoke": whitesmoke,
+);
+$mobile-width: 450px;
+$tablet-width: 1024px;
+$numbers: (0, 1, 2, 3, 4, 5, 6, 7, 8);
+$search-bar-width: 600px;
+$search-bar-width-mobile: 100px;
+$sidebar-width: 220px;
+$sidebar-background-color: #573d928a;
+$sidebar-item-color: #8856c2f3;
+$sidebar-sub-item-color: #835daf81;
+$boder-item: #815fdf;
+$boder-sub-item: #ddb1e6cc;
+$hover-color: #b67ff5;
+/**lightning mode **/
+
+$lightning-bg-color: white;
+$lightning-border-color: 1px solid whitesmoke;
+$lightning-text-color: black;
+$lightning-sidebar-bg-color: whitesmoke;
+$lightning-hover-bg-color: rgb(220, 227, 228);
+$lightning-sibar-sub-bg-color: linear-gradient(
+    90deg,
+    rgba(32, 36, 0, 1) 0%,
+    rgba(240, 247, 230, 0.9864320728291317) 0%,
+    rgba(200, 229, 231, 1) 0%
+);
+$lightning-selected-bg-color: rgb(184, 197, 197);
+$lightning-link-color: rgb(4, 180, 250);
+$flex-gaps: (5,10, 20, 30);
+$custom_width: (5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100);

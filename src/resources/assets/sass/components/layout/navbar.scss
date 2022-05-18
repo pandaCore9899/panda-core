@@ -1,0 +1,153 @@
+$search-bar-width: 100%;
+$notification-item-width: 50px;
+$search-bar-input-width: 100%;
+@use "sass:map";
+.panda-navbar {
+    z-index: 79;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    background-color: $lightning-bg-color;
+    // padding-left: 230px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    @include flex(center, flex-end);
+
+    &__search-bar {
+        @include flex(center, center);
+        width: $search-bar-width;
+        height: 100%;
+        &__input {
+            @include flex(center, flex-start);
+            height: 100%;
+            width: 30rem;
+
+            &__button {
+                @include flex(center, center);
+                border: $lightning-border-color;
+                border-left: none;
+                border-radius: 0px 10px 10px 0px;
+                height: 80%;
+                padding: 10px 8px 10px 8px;
+                background-color: $lightning-sidebar-bg-color;
+                &:hover {
+                    background-color: white;
+                    cursor: pointer;
+                }
+            }
+            input {
+                border: $lightning-border-color;
+                border-radius: 10px 0px 0px 10px;
+                border-right: none;
+                height: 80%;
+                width: $search-bar-input-width;
+                background-color: $lightning-sidebar-bg-color;
+                padding-left: 5%;
+                font-size: 1.5rem;
+                &:focus {
+                    background-color: $lightning-hover-bg-color;
+                    outline: none;
+                }
+            }
+            i {
+                color: gray;
+            }
+        }
+    }
+    &__notification {
+        @include flex(center, flex-start);
+        width: 240px;
+        height: 100%;
+        gap: 10px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-right: 20px;
+        &__item {
+            @include flex(center, center);
+            height: inherit;
+            width: 50px;
+            background-color: $lightning-sidebar-bg-color;
+            color: $lightning-text-color;
+            border-radius: 50%;
+            &:hover {
+                background: $lightning-hover-bg-color;
+                cursor: pointer;
+            }
+        }
+    }
+    &__account {
+        // @include flex(center,flex-end);
+        height: 100%;
+        position: relative;
+        &__wrapper {
+            height: 100%;
+            position: relative;
+            @include flex(center, flex-end);
+            gap: 2px;
+            width: 100px;
+            border-radius: 23px;
+            font-weight: 900;
+            &:hover {
+                cursor: pointer;
+                background: $lightning-hover-bg-color;
+            }
+        }
+        &__avt {
+            @include flex(center, center);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            img {
+                border-radius: 50%;
+            }
+        }
+        &__name {
+            @include flex(center, center);
+            width: 60px;
+            position: absolute;
+            left: 30px;
+            border-radius: 20px 20px 20px 20px;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+        &__dropdown {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 45px;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            padding: 10px 5px;
+            border-radius: 10px;
+            @include initBoxShadow(lightning, all);
+            &__item {
+                @include flex(center,left);
+                width: 100%;
+                height: 40px;
+                span{
+                    padding-left: 10px;
+                }
+                &:hover{
+                    cursor: pointer;
+                    background-color: $lightning-hover-bg-color;
+                }
+            }
+        }
+    }
+    &__line {
+        display: block;
+        height: 4px;
+        background: linear-gradient(
+            90deg,
+            rgba(32, 36, 0, 1) 0%,
+            rgba(140, 162, 163, 1) 0%,
+            rgba(232, 232, 232, 0.9864320728291317) 23%
+        );
+    }
+}
